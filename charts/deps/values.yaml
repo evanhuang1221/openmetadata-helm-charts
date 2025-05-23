@@ -29,6 +29,11 @@ mysql:
       CREATE USER 'airflow_user'@'%' IDENTIFIED BY 'airflow_pass';
       GRANT ALL PRIVILEGES ON airflow_db.* TO 'airflow_user'@'%' WITH GRANT OPTION;
       commit;
+   securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL 
 
 # OpenSearch Helm Dependency
 # you can find more details about this here https://artifacthub.io/packages/helm/opensearch-project-helm-charts/opensearch/2.12.2
@@ -53,7 +58,11 @@ opensearch:
     limits:
       cpu: "2000m"
       memory: "2048M"
-
+   securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
 # Airflow configurations for helm dependency
 # you can find more details about this here https://github.com/airflow-helm/charts
 airflow:
@@ -143,3 +152,8 @@ airflow:
         enabled: false
         schedule: "0 4 * * *"
         retainDays: 180
+   securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL     
