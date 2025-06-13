@@ -1,0 +1,82 @@
+For OpenMetadata to successfully ingest data from a source database, the user account needs specific permissions. Here's a detailed breakdown of the required permissions:
+Basic Connection Permissions:
+CONNECT - Ability to connect to the database
+USAGE - Basic usage rights on the database
+Schema Level Permissions:
+SELECT - To read data from tables
+USAGE - On schemas to access metadata
+DESCRIBE or SHOW - To view table structures
+Metadata Permissions:
+INFORMATION_SCHEMA access - To read system tables
+SHOW TABLES - To list all tables
+SHOW COLUMNS - To get column information
+SHOW INDEXES - To get index information
+SHOW CREATE TABLE - To get table creation statements
+Specific Database Requirements:
+
+
+For MySQL/MariaDB:
+
+
+GRANT SELECT, SHOW VIEW ON database_name.* TO 'openmetadata_user'@'%';
+GRANT PROCESS ON *.* TO 'openmetadata_user'@'%';
+
+
+For PostgreSQL:
+GRANT USAGE ON SCHEMA public TO openmetadata_user;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO openmetadata_user;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO openmetadata_user;
+
+
+Additional Considerations:
+The user should have read-only access
+No write permissions are required
+No admin privileges are needed
+Should be able to query system tables/catalogs
+Should have access to view table statistics
+Security Best Practices:
+Create a dedicated user for OpenMetadata
+Use strong passwords
+Limit access to only required databases/schemas
+Regularly rotate credentials
+Monitor user activity
+Common Issues to Avoid:
+Insufficient permissions on system tables
+Missing schema-level permissions
+Network access restrictions
+IP whitelisting requirements
+SSL/TLS requirements
+
+Verification Steps
+-- Test basic connection
+SELECT 1;
+
+-- Test schema access
+SHOW TABLES;
+
+-- Test table access
+SELECT * FROM information_schema.tables LIMIT 1;
+
+-- Test column access
+SELECT * FROM information_schema.columns LIMIT 1;
+
+
+Monitoring and Maintenance:
+Regularly check user permissions
+Monitor failed ingestion attempts
+Review access logs
+Update permissions as needed
+Document permission changes
+Troubleshooting:
+Check connection logs
+Verify network connectivity
+Confirm credential validity
+Review permission errors
+Check database-specific requirements
+Remember:
+Different databases may have slightly different permission requirements
+Some databases may need additional specific permissions
+Always follow the principle of least privilege
+Document all permission changes
+Regularly audit user permissions
+Would you like me to elaborate on any specific database system or permission type?
