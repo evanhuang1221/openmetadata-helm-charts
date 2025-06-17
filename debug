@@ -75,3 +75,32 @@ SELECT
 	LOWER(owner) "schema" 	
 FROM DBA_TAB_COMMENTS
 where comments is not null and owner not in ('SYSTEM', 'SYS')
+
+------------------------------
+
+
+[2025-06-17 10:17:29,730] DEBUG    {AirflowAPIRoutes:trigger:60} - Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/openmetadata_managed_apis/api/routes/trigger.py", line 55, in trigger_dag
+    response = trigger(dag_id, run_id, conf=conf)
+  File "/home/airflow/.local/lib/python3.10/site-packages/openmetadata_managed_apis/operations/trigger.py", line 29, in trigger
+    dag_run = trigger_dag(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/api/common/trigger_dag.py", line 133, in trigger_dag
+    raise DagNotFound(f"Dag id {dag_id} not found in DagModel")
+airflow.exceptions.DagNotFound: Dag id db6d80fa-53be-414a-a125-f42ead54a479 not found in DagModel
+
+[2025-06-17 10:17:29,730] DEBUG    {AirflowAPIRoutes:trigger:60} - Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/openmetadata_managed_apis/api/routes/trigger.py", line 55, in trigger_dag
+    response = trigger(dag_id, run_id, conf=conf)
+  File "/home/airflow/.local/lib/python3.10/site-packages/openmetadata_managed_apis/operations/trigger.py", line 29, in trigger
+    dag_run = trigger_dag(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/api/common/trigger_dag.py", line 133, in trigger_dag
+    raise DagNotFound(f"Dag id {dag_id} not found in DagModel")
+airflow.exceptions.DagNotFound: Dag id db6d80fa-53be-414a-a125-f42ead54a479 not found in DagModel
