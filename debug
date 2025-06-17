@@ -1,0 +1,77 @@
+debug:
+db6d80fa-53be-414a-a125-f42ead54a479-ingestion-task-ng8cqepl
+ ▶ Log message source details
+[2025-06-17, 10:18:08 UTC] {server_mixin.py:74} INFO - OpenMetadata client running with Server version [1.7.1] and Client version [1.7.1.4]
+[2025-06-17, 10:18:08 UTC] {workflow_factory.py:85} INFO - Registered the dag: db6d80fa-53be-414a-a125-f42ead54a479
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/file_task_handler.py", line 579, in _init_file
+    os.chmod(full_path, new_file_permissions)
+PermissionError: [Errno 1] Operation not permitted: '/opt/airflow/logs/dag_id=db6d80fa-53be-414a-a125-f42ead54a479/run_id=manual__2025-06-17T10:17:44+00:00/task_id=ingestion_task/attempt=1.log'
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/logging/__init__.py", line 1100, in emit
+    msg = self.format(record)
+  File "/usr/local/lib/python3.10/logging/__init__.py", line 943, in format
+    return fmt.format(record)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/colored_log.py", line 106, in format
+    return super().format(record)
+  File "/usr/local/lib/python3.10/logging/__init__.py", line 678, in format
+    record.message = record.getMessage()
+  File "/usr/local/lib/python3.10/logging/__init__.py", line 368, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "/home/airflow/.local/bin/airflow", line 8, in <module>
+    sys.exit(main())
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/__main__.py", line 62, in main
+    args.func(args)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 463, in task_run
+    ti.init_run_context(raw=args.raw)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3727, in init_run_context
+    self._set_context(self)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/logging_mixin.py", line 129, in _set_context
+    set_context(self.log, context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/logging_mixin.py", line 276, in set_context
+    flag = cast(FileTaskHandler, handler).set_context(value)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/file_task_handler.py", line 242, in set_context
+    local_loc = self._init_file(ti, identifier=identifier)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/log/file_task_handler.py", line 581, in _init_file
+    logger.warning("OSError while changing ownership of the log file. ", e)
+Message: 'OSError while changing ownership of the log file. '
+Arguments: (PermissionError(1, 'Operation not permitted'),)
+[2025-06-17, 10:18:08 UTC] {task_command.py:467} INFO - Running <TaskInstance: db6d80fa-53be-414a-a125-f42ead54a479.ingestion_task manual__2025-06-17T10:17:44+00:00 [queued]> on host db6d80fa-53be-414a-a125-f42ead54a479-ingestion-task-ng8cqepl
+[2025-06-17, 10:18:09 UTC] {local_task_job_runner.py:123} ▶ Pre task execution logs
+[2025-06-17, 10:18:14 UTC] {server_mixin.py:74} INFO - OpenMetadata client running with Server version [1.7.1] and Client version [1.7.1.4]
+[2025-06-17, 10:18:15 UTC] {connection.py:123} INFO - Initializing Oracle thick client at /instantclient
+[2025-06-17, 10:18:16 UTC] {test_connections.py:203} INFO - Running CheckAccess...
+[2025-06-17, 10:18:16 UTC] {test_connections.py:203} INFO - Running PackageAccess...
+[2025-06-17, 10:18:16 UTC] {test_connections.py:203} INFO - Running GetSchemas...
+[2025-06-17, 10:18:16 UTC] {test_connections.py:203} INFO - Running GetTables...
+[2025-06-17, 10:18:16 UTC] {test_connections.py:203} INFO - Running GetViews...
+[2025-06-17, 10:18:16 UTC] {test_connections.py:228} INFO - Test connection results:
+[2025-06-17, 10:18:16 UTC] {test_connections.py:229} INFO - lastUpdatedAt=None status=<StatusType.Running: 'Running'> steps=[TestConnectionStepResult(name='CheckAccess', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='PackageAccess', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetSchemas', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTables', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetViews', mandatory=False, passed=True, message=None, errorLog=None)]
+[2025-06-17, 10:18:16 UTC] {test_connections.py:228} INFO - Test connection results:
+[2025-06-17, 10:18:16 UTC] {test_connections.py:229} INFO - lastUpdatedAt=None status=<StatusType.Running: 'Running'> steps=[TestConnectionStepResult(name='CheckAccess', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='PackageAccess', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetSchemas', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTables', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetViews', mandatory=False, passed=True, message=None, errorLog=None)]
+[2025-06-17, 10:18:18 UTC] {common_db_source.py:297} WARNING - Table description error for table [acadm.ACCT_MISC_TABLE]: (oracledb.exceptions.DatabaseError) ORA-00942: table or view does not exist
+[SQL: /* {"app": "OpenMetadata", "version": "1.7.1.4"} */
+SELECT
+	comments table_comment,
+	LOWER(table_name) "table_name",
+	LOWER(owner) "schema" 	
+FROM DBA_TAB_COMMENTS
+where comments is not null and owner not in ('SYSTEM', 'SYS')
+]
+(Background on this error at: https://sqlalche.me/e/14/4xp6)
+[2025-06-17, 10:18:18 UTC] {common_db_source.py:297} WARNING - Table description error for table [acadm.ACCT_MISC_TABLE]: (oracledb.exceptions.DatabaseError) ORA-00942: table or view does not exist
+[SQL: /* {"app": "OpenMetadata", "version": "1.7.1.4"} */
+SELECT
+	comments table_comment,
+	LOWER(table_name) "table_name",
+	LOWER(owner) "schema" 	
+FROM DBA_TAB_COMMENTS
+where comments is not null and owner not in ('SYSTEM', 'SYS')
